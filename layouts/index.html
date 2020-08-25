@@ -1,0 +1,20 @@
+{{ define "main" }}
+<main>
+  <ul>
+    {{ $paginator := .Paginate (where .Site.RegularPages "Type" "in" .Site.Params.mainSections) }}
+		{{ range $paginator.Pages }}
+      <li>
+        <article>
+          <time datetime="{{ .Date }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+          <a href="{{ .Permalink }}">{{ .Title }}</a>
+        </article>
+      </li>
+    {{ end }}
+  </ul>
+  <nav style="font-family:monospace">
+    <a href="{{ if .Paginator.HasPrev }}{{ .Paginator.Prev.URL }}{{ end }}"><</a>
+    {{ .Paginator.PageNumber }} of {{ .Paginator.TotalPages }}
+    <a href="{{ if .Paginator.HasNext }}{{ .Paginator.Next.URL }}{{ end }}">></a>
+	</nav>
+</main>
+{{ end }}

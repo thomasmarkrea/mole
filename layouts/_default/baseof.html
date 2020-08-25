@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    
+    <title>{{ .Title }}</title>
+    <meta name="description" content="{{ .Description | default .Site.Params.description }}">
+    
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;1,900&display=swap');
+
+      body {
+        font-family: 'Lato', sans-serif;
+        max-width: 70ch;
+        padding: 2ch;
+        margin: auto;
+        background-color: #FFFADD;
+      }
+      h1, h2, h3 {
+        font-style: italic;
+        font-weight: 900;
+      }
+      a {
+        color: #1438FF;
+        text-decoration: none;
+        outline: 0;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      img {
+        max-width: 100%;
+      }
+      ul {
+        list-style-type: none;
+        padding: 1rem 0;
+      }
+      li {
+        margin-bottom: 0.5rem;
+      }
+      ul time {
+        margin-right: 2ch;
+        font-family: monospace;
+      }
+      pre {
+        padding: 2ch;
+        background-color: #EDEDED;
+        overflow: scroll;
+      }
+      ::selection {
+        background-color: #FFED8A;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1><a href="/">{{ .Site.Title }}</a></h1>
+    </header>
+    {{ block "main" . }}{{ end }}
+    <footer>
+      <hr>
+      &copy; {{ now.Year }} {{ .Site.Title }}
+      <nav style="display:block;float:right">
+        {{ range .Site.Menus.main }}
+          <a href="{{ .URL }}">{{ .Name }}</a>{{ with .Post }}{{ . }}{{ end }}
+        {{ end }}
+      </nav>
+    </footer>
+  </body>
+</html>
