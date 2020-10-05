@@ -1,4 +1,7 @@
 {{ define "main" }}
+<header>
+  <h1><a href="/">{{ .Site.Title }}</a></h1>
+</header>
 <main>
   <ul>
     {{ $paginator := .Paginate (where .Site.RegularPages "Type" "in" .Site.Params.mainSections) }}
