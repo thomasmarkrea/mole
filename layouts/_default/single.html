@@ -9,6 +9,7 @@
       {{ with .Date}}
         <time datetime="{{ . }}">{{ .Format ("January 2, 2006") }}</time>
       {{ end }}
+      <hr>
     </header>
     {{ .Content }}
   </article>
